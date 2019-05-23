@@ -1,1 +1,2 @@
 # GifTastic
+Welcome to GifTastic!  You can either select from preloaded items, add your own items or delete the last item that was entered.  When a item is clicked it will display 10 gifs from giphy.com on that item.  
