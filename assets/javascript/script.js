@@ -1,18 +1,18 @@
 //i was unable to complete this code
 $(document).ready(function () {
-var topics = ["GameOfThrones", "Avatar", "dota2", "csgo", "civilization5"]
+var topics = ["GameOfThrones", "Avatar", "dota2", "csgo", "civilization 5"]
 
 function displayGifButtons() {
     $("#gifButtons").empty();
     for (var i = 0; i < topics.length; i++) {
+        console.log("we got here");
         var gifButton = $("<button>");
-        gifButton.addClass("gif");
-        gifButton.addClass("btn btn-primary")
+        gifButton.addClass("gif btn btn-primary");
         gifButton.attr("data-name", topics[i]);
         gifButton.text(topics[i]);
         $("#gifButtons").append(gifButton);
-    }
-}
+    };
+};
 
 function addNewButton() {
     $("#addGif").on("click", function () {
@@ -25,26 +25,24 @@ function addNewButton() {
         return false;
     });
 
-}
+};
 
 function removeLastButton() {
-    $("removeGif").on("click", function () {
-        topics.pop(gif);
+    $("#removeGif").on("click", function () {
+        topics.pop();
         displayGifButtons();
         return false;
     });
 
-}
+};
 
 function displayGifs() {
     var gif = $(this).attr("data-name");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=dc6zaTOxFJmzC&limit=10";
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=AxZGsQ1KfDw66v9lEObhJ5lwg4vq3Msi&limit=10";
     $.ajax({
             url: queryURL,
             method: 'GET'
-        })
-
-        .done(function (response) {
+        }).then(function (response) {
             $("#gifsView").empty();
             var results = response.data;
             if (results == "") {
@@ -64,13 +62,12 @@ function displayGifs() {
                 gifDiv.append(gifImage);
                 $("#gifsView").prepend(gifDiv);
 
-            }
+            };
         });
-}
-
-displayGifButtons();
+};
 addNewButton();
 removeLastButton();
+displayGifButtons();
 
 $(document).on("click", ".gif", displayGifs);
 $(document).on("click", ".image", function () {
